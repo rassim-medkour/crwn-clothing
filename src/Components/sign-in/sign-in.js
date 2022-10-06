@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './sign-in.scss'
 import {FormInput} from '../form-input/form-input'
+import { CustomButton } from '../custom-button/custom-button';
 
 export  function SignIn() {
     const [email,setEmail] = useState('');
@@ -16,7 +17,6 @@ export  function SignIn() {
 
      const handleChange = event =>{
         const {value, name} = event.target;
-        console.log(name);
         if (name === 'password') {
             setPassword(value);
         }
@@ -31,9 +31,10 @@ export  function SignIn() {
         <span>Signin with your email and password</span>
 
         <form onSubmit={handleSubmit }>
-              <FormInput name='email' type='email' label='Email' value={email} onChange={handleChange} />
-              <FormInput name='password' label='Password' value={password} onChange={handleChange} />
-            <input type='submit' name='submit' value='Signin' />
+              <FormInput name='email' type='email' label='Email' required value={email} handleChange={handleChange} />
+              <FormInput name='password' label='Password' required value={password} handleChange={handleChange} />
+              <CustomButton type='submit' name='submit'>Signin</CustomButton>
+
         </form>
     </div>
   )
