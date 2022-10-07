@@ -34,8 +34,10 @@ export  function SignIn() {
         <form onSubmit={handleSubmit }>
               <FormInput name='email' type='email' label='Email' required value={email} handleChange={handleChange} />
               <FormInput name='password' label='Password' required value={password} handleChange={handleChange} />
-              <CustomButton type='submit' name='submit'>Signin</CustomButton>
-              <CustomButton onClick={signInWithGoogle}>Signin With Google</CustomButton>
+              <div className='buttons'>
+                  <CustomButton type='submit' name='submit'>Signin</CustomButton>
+                  <CustomButton isGoogleSignIn onClick={signInWithGoogle}>Signin With Google</CustomButton>
+              </div>
 
         </form>
     </div>
