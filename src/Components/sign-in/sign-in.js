@@ -3,10 +3,12 @@ import './sign-in.scss'
 import {FormInput} from '../form-input/form-input'
 import { CustomButton } from '../custom-button/custom-button';
 import { auth,signInWithGoogle } from '../../firebase/firebase.utils';
+import { useNavigate } from 'react-router-dom';
 
 export  function SignIn() {
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
+    const navigate = useNavigate();
 
 
     const handleSubmit = async event =>{
@@ -17,6 +19,7 @@ export  function SignIn() {
             if(user){
                 setEmail('');
                 setPassword('');
+                navigate('/');
             }
         } catch (error) {
             console.log(error);
@@ -34,6 +37,16 @@ export  function SignIn() {
 
     }
 
+    const handleSignInWithGoogle = async () => {
+        try {
+            const { user } = await signInWithGoogle();
+            if (user) {
+                navigate('/');
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
   return (
     <div className='sign-in'>
         <h2>I already have an account</h2>
@@ -44,7 +57,7 @@ export  function SignIn() {
               <FormInput name='password' type='password' label='Password' required value={password} handleChange={handleChange} />
               <div className='buttons'>
                   <CustomButton type='submit' name='submit'>Signin</CustomButton>
-                  <CustomButton isGoogleSignIn onClick={signInWithGoogle}>Signin With Google</CustomButton>
+                  <CustomButton isGoogleSignIn onClick={handleSignInWithGoogle}>Signin With Google</CustomButton>
               </div>
 
         </form>

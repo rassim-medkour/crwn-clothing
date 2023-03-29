@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import {Routes,Route} from 'react-router-dom';
 import {useState,useEffect} from 'react';
 import './App.css';
@@ -19,6 +19,7 @@ function App() {
         const userRef = await createUserProfileDocument(userAuth);
 
         userRef.onSnapshot(snapShot => {
+          console.log(snapShot);
           setCurrentUser({
             id: snapShot.id,
             ...snapShot.data(),
